@@ -1,6 +1,7 @@
 #!/bin/bash
 
 set -euo pipefail
+set -x
 
 # REGISTRY_HOST
 # REGISTRY_ORG
