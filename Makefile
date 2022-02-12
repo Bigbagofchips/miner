@@ -41,7 +41,7 @@ ci: compile
 release:
 	$(REBAR) as prod release -n miner
 
-validator:
+validator: $(GRPC_SERVICE_DIR)
 	$(REBAR) as validator release -n miner -v $(VAL_VERSION)
 
 cover:
@@ -69,9 +69,9 @@ devrel:
 devrelease:
 	$(REBAR) as dev release
 
-grpc:
+grpc: $(GRPC_SERVICE_DIR)
 	@echo "generating miner grpc services"
-	REBAR_CONFIG="config/grpc_client_gen_local.config" $(REBAR) grpc gen
+	REBAR_CONFIG="config/grpc_client_gen.config" $(REBAR) grpc gen
 
 $(GRPC_SERVICE_DIR):
 	@echo "miner grpc service directory $(directory) does not exist"
