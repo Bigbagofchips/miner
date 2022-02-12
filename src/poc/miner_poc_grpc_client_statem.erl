@@ -515,7 +515,7 @@ get_uri_for_challenger(OnionKeyHash, Connection)->
     case send_grpc_unary_req(Connection, Req, 'poc_key_to_public_uri') of
         {ok, #gateway_public_routing_data_resp_v1_pb{public_uri = URIData}, _Req2Details} ->
             #routing_address_pb{uri = URI, pub_key = _PubKey} = URIData,
-            #{host := IP, port := Port} = uri_string:parse(URI),
+            #{host := IP, port := Port} = uri_string:parse(binary_to_list(URI)),
             {ok, {IP, Port}};
         {error, Reason, _Details} ->
             {error, Reason};
